@@ -19,7 +19,7 @@ class Dbgp_build_ext(build_ext):
         # weird, for me plat_name is 'linux-i686' on a 32bit linux
         if 'win32' in self.plat_name:
             plat = 'win32-x86'
-        elif 'linux' in self.plat_name:
+        elif 'linux' in self.plat_name or 'macosx' in self.plat_name:
             if '64' in self.plat_name:
                 plat = 'linux-x86_64'
             else:
