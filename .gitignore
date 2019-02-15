@@ -4,3 +4,6 @@ __pycache__
 komodo_python3_dbgp.egg-info
 dist
 build
+
+.tags
+.DS_Store

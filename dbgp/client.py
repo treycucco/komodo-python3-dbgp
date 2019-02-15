@@ -2201,13 +2201,13 @@ class dbgpSocket:
             except socket.error as e:
                 # socket was closed on us, quit now
                 log.debug("_getIncomingDataPacket socket closed")
-                self.queue.put(None)
+                self.queue.put(['detach'])
                 break
             if not data:
                 # protocol error, we should never receive an empty
                 # data set
                 log.debug("_getIncomingDataPacket socket closed")
-                self.queue.put(None)
+                self.queue.put(['detach'])
                 break
             log.debug("    %d[%r]" , len(data), data)
 
@@ -2476,6 +2476,7 @@ class backend(listcmd.ListCmd):
             
         deregisterClient(self)
         warnMainThreadEnding()
+
         if not self._stop:
             # we want to stop now until the IDE chooses to end the session
             while not self._detach:
